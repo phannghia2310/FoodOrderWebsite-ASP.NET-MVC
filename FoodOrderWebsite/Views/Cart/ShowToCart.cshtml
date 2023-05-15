@@ -1,0 +1,138 @@
+﻿@model FoodOrderWebsite.Models.CartModel
+
+@{
+    ViewBag.Title = "ShowToCart";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@if (Model != null && Model.Items.Count != 0)
+{
+    var total = 0;
+    var shipping = 0;
+
+    <section class="h-100 h-custom" style="background-color: #d2c9ff;">
+        <div class="container py-5 h-100">
+            <div class="row d-flex justify-content-center align-items-center h-100">
+                <div class="col-12">
+                    <div class="card card-registration card-registration-2" style="border-radius: 15px;">
+                        <div class="card-body p-0">
+                            <div class="row g-0">
+                                <div class="col-lg-8">
+                                    <div class="p-5">
+                                        <div class="d-flex justify-content-between align-items-center mb-5">
+                                            <h1 class="fw-bold mb-0 text-black">Giỏ hàng</h1>
+                                        </div>
+
+                                        @foreach (var item in Model.Items)
+                                        {
+                                            total += item._product.Price.Value * item._quantity;
+
+                                            <hr class="my-4">
+
+                                            <div class="row mb-4 d-flex justify-content-between align-items-center">
+                                                <div class="col-md-3 col-lg-3 col-xl-3">
+                                                    <img src="~/Content/images/items/@item._product.ImageURL"
+                                                         style="width:150px; height: 100px;"
+                                                         class="img-fluid rounded-3" alt="@item._product.ProductName" />
+                                                </div>
+                                                <div class="col-md-3 col-lg-3 col-xl-3">
+                                                    <h6 class="text-muted"></h6>
+                                                    <h6 class="text-black mb-0">@item._product.ProductName</h6>
+                                                </div>
+                                                <div class="col-md-3 col-lg-3 col-xl-2 d-flex">
+
+                                                    @using (Html.BeginForm("UpdateCart", "Cart"))
+                                                    {
+                                                        <input type = "hidden" value = "@item._product.ProductID" name = "ProductID" />
+
+                                                        <input value = "@item._quantity" min = "1" type = "number"
+                                                        style = "width:100px; margin-bottom:10px;"
+                                                        class="form-control-sm" name="Quantity" />
+
+                                                        <button type="submit" class="btn btn-primary btn-block btn-lg"
+                                                                style="padding:2px;">
+                                                            Cập nhật
+                                                        </button>
+                                                    }
+
+                                                </div>
+                                                <div class="col-md-3 col-lg-2 col-xl-2 offset-lg-1">
+                                                    <h6 class="mb-0">@(item._product.Price.Value * item._quantity)đ</h6>
+                                                </div>
+                                                <div class="col-md-1 col-lg-1 col-xl-1 text-end">
+                                                    <a href="~/Cart/RemoveFromCart/@item._product.ProductID" class="text-muted"><i class="fa fa-times"></i></a>
+                                                </div>
+                                            </div>
+                                        }
+
+                                        <hr class="my-4">
+
+                                        <div class="pt-5">
+                                            <h6 class="mb-0">
+                                                <a href="~/Home/Menu" class="text-body">
+                                                    <i class="fa fa-arrow-left"></i> Tiếp tục mua hàng
+                                                </a>
+                                            </h6>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-lg-4 bg-grey">
+                                    <div class="p-5">
+                                        <h3 class="fw-bold mb-5 mt-2 pt-1">Tóm tắt</h3>
+                                        <hr class="my-4">
+
+                                        <div class="d-flex justify-content-between mb-4">
+                                            <h5 class="text-uppercase">Thành tiền</h5>
+                                            <h5>@total đ</h5>
+                                        </div>
+
+                                        <div class="d-flex justify-content-between mb-4">
+                                            <h5 class="text-uppercase">Phí ship</h5>
+                                            <h5>@shipping đ</h5>
+                                        </div>
+
+                                        <h5 class="text-uppercase mb-3">Mã giảm giá</h5>
+
+                                        <div class="mb-5">
+                                            <div class="form-outline">
+                                                <input type="text" id="form3Examplea2" class="form-control form-control-lg" placeholder="Nhập mã"/>
+                                            </div>
+                                        </div>
+
+                                        <hr class="my-4">
+
+                                        <div class="d-flex justify-content-between mb-5">
+                                            <h5 class="text-uppercase">Tổng tiền</h5>
+                                            <h5>@(total + shipping) đ</h5>
+                                        </div>
+
+                                        <form method="post" action="@Url.Action("RemoveAll", "Cart")">
+                                            <button type="submit" class="btn btn-danger btn-block btn-lg">
+                                                Xóa giỏ hàng
+                                            </button>
+                                        </form>
+
+                                        <br />
+
+                                        <form action="@Url.Action("Index", "Payment")">
+                                            <button type="submit" class="btn btn-dark btn-block btn-lg"
+                                                    data-mdb-ripple-color="dark">
+                                                Thanh toán
+                                            </button>
+                                        </form>
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+}
+else
+{
+    <img src="~/Content/images/empty-cart.png" alt="" style="margin-left:450px; margin-top:50px;" />
+}
+

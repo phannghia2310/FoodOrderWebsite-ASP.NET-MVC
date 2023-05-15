@@ -1,0 +1,235 @@
+﻿@model FoodOrderWebsite.Context.Contact
+
+@{
+    ViewBag.Title = "Contact";
+}
+
+<style type="text/css">
+    .form-title {
+        margin-bottom: 25px;
+    }
+
+        .form-title h2 {
+            font-size: 25px;
+        }
+
+        .form-title p {
+            font-size: 15px;
+            line-height: 1.8;
+        }
+
+    .contact-form form p input[type=text], .contact-form form p input[type=tel], .contact-form form p input[type=email] {
+        width: 49%;
+        padding: 15px;
+        border: 1px solid #ddd;
+        border-radius: 3px;
+    }
+
+    .contact-form form p textarea {
+        border: 1px solid #ddd;
+        padding: 15px;
+        height: 200px;
+        border-radius: 3px;
+        width: 100%;
+        resize: none;
+    }
+
+    .contact-form-wrap {
+        background-color: #FBFBFB;
+        padding: 45px 30px;
+        border-radius: 5px;
+    }
+
+    .contact-form-box {
+        padding-left: 40px;
+        margin-bottom: 30px;
+    }
+
+        .contact-form-box h4 {
+            font-size: 20px;
+            font-weight: 600;
+            position: relative;
+            margin-bottom: 10px;
+        }
+
+            .contact-form-box h4 i {
+                position: absolute;
+                left: -13%;
+                color: #F28123;
+                top: 2px;
+            }
+
+        .contact-form-box p {
+            line-height: 1.8;
+            opacity: 0.8;
+        }
+
+    .contact-form-wrap .contact-form-box:last-child {
+        margin: 0;
+    }
+
+    .find-location p {
+        color: #fff;
+        font-size: 40px;
+        margin: 0;
+        font-weight: 600;
+        padding: 95px 0;
+    }
+
+        .find-location p i {
+            margin-right: 10px;
+            color: #F28123;
+        }
+
+    #form_status span {
+        color: #fff;
+        font-size: 14px;
+        font-weight: normal;
+        background: #E74C3C;
+        width: 100%;
+        text-align: center;
+        display: inline-block;
+        padding: 10px 0px;
+        border-radius: 3px;
+        margin-bottom: 18px;
+    }
+
+        #form_status span.loading {
+            color: #333;
+            background: #eee;
+            border-radius: 3px;
+            padding: 18px 0px;
+        }
+
+        #form_status span.notice {
+            color: yellow;
+        }
+
+    #form_status .success {
+        color: #fff;
+        text-align: center;
+        background: #2ecc71;
+        border-radius: 3px;
+        padding: 30px 0px;
+    }
+
+        #form_status .success i {
+            color: #fff;
+            font-size: 45px;
+            margin-bottom: 14px;
+        }
+
+        #form_status .success h3 {
+            color: #fff;
+            margin-bottom: 10px;
+        }
+
+    .btn-box a {
+        display: inline-block;
+        padding: 10px 15px;
+        background-color: #ffbe33;
+        color: #ffffff;
+        border-radius: 45px;
+        transition: all 0.3s;
+        border: none;
+    }
+
+        .btn-box a:hover {
+            background-color: #e7a214;
+        }
+    .text {
+        width: 350px;
+        height: 55px;
+    }
+    .textarea {
+        width: 740px;
+    }
+</style>
+
+<!-- contact form -->
+<div class="contact-from-section mt-150 mb-150">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 mb-5 mb-lg-0">
+                <div class="form-title">
+                    <h2>Bạn có câu hỏi gì không?</h2>
+                    <p>Đội ngũ nhân viên tư vấn của Fly Pizza sẽ giải đáp thắc mắc của bạn. Đừng lo lắng, vấn đề của bạn sẽ được chúng tôi phản hồi trong khoảng thời gian sớm nhất!</p>
+                </div>
+                <div id="form_status"></div>
+                <div class="contact-form">
+                    @using (Html.BeginForm("Contact", "Home", FormMethod.Post, new { enctype = "multipart/form-data" }))
+                    {
+                        @Html.AntiForgeryToken()
+
+                        <div class="form-horizontal">
+                            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                            <div class="form-group">
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        @Html.EditorFor(model => model.ContactName, new { htmlAttributes = new { @class = "form-control text", @placeholder = "Họ và tên" } })
+                                        @Html.ValidationMessageFor(model => model.ContactName, "", new { @class = "text-danger" })
+                                    </div>
+
+                                    <div class="col-md-6">
+                                        @Html.EditorFor(model => model.Email, new { htmlAttributes = new { @class = "form-control text", @placeholder = "Email" } })
+                                        @Html.ValidationMessageFor(model => model.Email, "", new { @class = "text-danger" })
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        @Html.EditorFor(model => model.Phone, new { htmlAttributes = new { @class = "form-control text", @placeholder = "Điện thoại" } })
+                                        @Html.ValidationMessageFor(model => model.Phone, "", new { @class = "text-danger" })
+                                    </div>
+
+                                    <div class="col-md-6">
+                                        @Html.EditorFor(model => model.Subject, new { htmlAttributes = new { @class = "form-control text", @placeholder = "Vấn đề" } })
+                                        @Html.ValidationMessageFor(model => model.Subject, "", new { @class = "text-danger" })
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        @Html.TextAreaFor(model => model.Message, new { @class = "form-control textarea", rows = "7", placeholder = "Lời nhắn" })
+                                        @Html.ValidationMessageFor(model => model.Message, "", new { @class = "text-danger" })
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        if(string.IsNullOrEmpty(ViewBag.ErrorContact) != true)
+                        {
+                            <div class="alert alert-danger">@ViewBag.ErrorContact</div>
+                        }
+
+                        <button type="submit" class="btn btn-warning btn-block btn-lg"
+                                style="padding:5px; border-radius:50px; width: 120px; color: #FFFFFF">
+                            Xác nhận
+                        </button>
+                    }
+                </div>
+            </div>
+            <div class="col-lg-4">
+                <div class="contact-form-wrap">
+                    <div class="contact-form-box">
+                        <h4><i class="fa fa-map"></i> Địa chỉ</h4>
+                        <p>450-451 Lê Văn Việt, <br> Phường Tăng Nhơn Phú A, Tp. Thủ Đức (Quận 9 cũ), <br> TP. Hồ Chí Minh</p>
+                    </div>
+                    <div class="contact-form-box">
+                        <h4><i class="fa fa-clock-o"></i> Giờ mở cửa</h4>
+                        <p>Mỗi ngày: 08.00 AM to 10.00 PM</p>
+                    </div>
+                    <div class="contact-form-box">
+                        <h4><i class="fa fa-address-book"></i> Liên hệ</h4>
+                        <p>Điện thoại: +84 123456789 <br> Email: support@gmail.com</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- end contact form -->

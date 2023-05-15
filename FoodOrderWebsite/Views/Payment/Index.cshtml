@@ -1,0 +1,21 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<body style="text-align:center; margin: 100px;">
+    @if (string.IsNullOrEmpty(ViewBag.ErrorCheckout) == true)
+    {
+        <h2>Đặt hàng thành công</h2>
+
+        <div class="btn-box">
+            <a href="@Url.Action("Index", "Home")">Tiếp tục mua hàng</a>
+        </div>
+    }
+    else
+    {
+        <div class="alert alert-danger">@ViewBag.ErrorCheckout</div>
+    }
+
+</body>
