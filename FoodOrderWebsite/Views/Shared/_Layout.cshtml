@@ -75,7 +75,8 @@
                                     @if (Session["UserID"] != null)
                                     {
                                         <a class="dropdown-item" href="@Url.Action("Setting", "Account", new { id = Session["UserID"] })">Cài đặt</a>
-                                        <a class="dropdown-item" href="~/Account/Logout">Đăng xuất</a> 
+                                        <a class="dropdown-item" href="@Url.Action("CartHistory", "Cart", new { id = Session["UserID"] })">Lịch sử đơn hàng</a>
+                                        <a class="dropdown-item" href="~/Account/Logout">Đăng xuất</a>
                                     }
                                     else
                                     {

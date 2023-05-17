@@ -97,5 +97,35 @@ namespace FoodOrderWebsite.Controllers
                 ViewBag.QuantityCart = total_item;
                 return PartialView("BagCart");
         }
+
+        public ActionResult CartHistory(int? id)
+        {
+            var order = objFoodOrderEntities.Orders.Where(o => o.UserID == id).FirstOrDefault();
+            var orderdetail = objFoodOrderEntities.OrderDetails.ToList();
+
+            List<CartHistory> itemshistory = new List<CartHistory>();
+
+            foreach(var item in orderdetail)
+            {
+                if(item.OrderID == order.OrderID)
+                {
+                    var product = objFoodOrderEntities.Products.Find(item.ProductID);
+                    var model = new CartHistory
+                    {
+                        OrderID = item.OrderID,
+                        OrderName = order.OrderName,
+                        OrderDate = order.OrderDate,
+                        ImageURL = product.ImageURL,
+                        ProductName = product.ProductName,
+                        Status = order.Status,
+                        Quantity = item.Quantity,
+                        Total = item.Quantity * item.Price,
+                    };
+
+                    itemshistory.Add(model);
+                }
+            }
+            return View(itemshistory);
+        }
     }
 }

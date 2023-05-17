@@ -181,6 +181,7 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\CartHistory.cs" />
     <Compile Include="Models\CartModel.cs" />
     <Compile Include="Models\HomeModel.cs" />
     <Compile Include="Models\UserSetting.cs" />
@@ -2276,6 +2277,7 @@
     <Content Include="Views\Cart\BagCart.cshtml" />
     <Content Include="Views\Payment\Index.cshtml" />
     <Content Include="Views\Account\Setting.cshtml" />
+    <Content Include="Views\Cart\CartHistory.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

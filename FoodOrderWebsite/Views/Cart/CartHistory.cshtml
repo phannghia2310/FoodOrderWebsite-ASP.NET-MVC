@@ -1,0 +1,67 @@
+﻿@model IEnumerable<FoodOrderWebsite.Models.CartHistory>
+
+@{
+    ViewBag.Title = "CartHistory";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<table class="table" style="height:300px; margin-top:50px; margin-bottom:50px;">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.OrderName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Status)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.OrderDate)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ProductName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ImageURL)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Quantity)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Total)
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.OrderName)
+            </td>
+            @if (item.Status.Value == 1)
+            {
+                <td>Đã xác nhận</td>
+            }
+            else
+            {
+                <td>Đã hủy</td>
+            }
+            <td>
+                @Html.DisplayFor(modelItem => item.OrderDate)
+            </td>
+            <td style="width:400px;">
+                @Html.DisplayFor(modelItem => item.ProductName)
+            </td>
+            <td style="width:150px; height: 100px;">
+                <img src="~/Content/images/items/@item.ImageURL"
+                     style="width:150px; height: 100px;"
+                     class="img-fluid rounded-3" alt="@item.ProductName" />
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Quantity)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Total)
+            </td>
+        </tr>
+    }
+</table>
