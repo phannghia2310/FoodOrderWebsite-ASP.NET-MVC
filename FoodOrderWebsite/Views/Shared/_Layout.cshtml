@@ -147,83 +147,87 @@
         <!-- end header section -->
     </div>
 
-    @RenderBody()
-
-    <!-- footer section -->
-    <footer class="footer_section">
-        <div class="container">
-            <div class="row">
-                <div class="col-md-4 footer-col">
-                    <div class="footer_contact">
-                        <h4>
-                            Liên hệ chúng tôi
-                        </h4>
-                        <div class="contact_link_box">
-                            <a href="">
-                                <i class="fa fa-map-marker" aria-hidden="true"></i>
-                                <span>
-                                    450-451 Lê Văn Việt, Phường Tăng Nhơn Phú A, Tp. Thủ Đức (Quận 9 cũ), TP. Hồ Chí Minh
-                                </span>
-                            </a>
-                            <a href="">
-                                <i class="fa fa-phone" aria-hidden="true"></i>
-                                <span>
-                                    +84 123456789
-                                </span>
-                            </a>
-                            <a href="">
-                                <i class="fa fa-envelope" aria-hidden="true"></i>
-                                <span>
-                                    demo@gmail.com
-                                </span>
-                            </a>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-4 footer-col">
-                    <div class="footer_detail">
-                        <a href="#" class="footer-logo">
-                            Fly Pizza
-                        </a>
-                        <p>
-                            Sự lựa chọn phù hợp cho những chiếc bụng đói và những bữa tiệc náo nhiệt
-                        </p>
-                        <div class="footer_social">
-                            <a href="">
-                                <i class="fa fa-facebook" aria-hidden="true"></i>
-                            </a>
-                            <a href="">
-                                <i class="fa fa-instagram" aria-hidden="true"></i>
-                            </a>
-                            <a href="">
-                                <i class="fa fa-twitter" aria-hidden="true"></i>
-                            </a>
-                            <a href="">
-                                <i class="fa fa-youtube-play" aria-hidden="true"></i>
-                            </a>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-4 footer-col">
-                    <h4>
-                        Giờ mở cửa
-                    </h4>
-                    <p>
-                        Mỗi ngày
-                    </p>
-                    <p>
-                        08.00 Am - 10.00 Pm
-                    </p>
-                </div>
-            </div>
-            <div class="footer-info">
-                <p>
-                    Bản quyền &copy; <span id="displayYear"></span> Fly Pizza. Đã đăng ký Bản quyền
-                </p>
-            </div>
+    <div class="wrapper" style="display: flex; flex-direction: column; min-height:100%;">
+        <div class="content" style="flex: 1; margin-bottom: 10px;">
+            @RenderBody()
         </div>
-    </footer>
-    <!-- footer section -->
+
+        <!-- footer section -->
+        <footer class="footer_section" style="flex-shrink: 0;">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-4 footer-col">
+                        <div class="footer_contact">
+                            <h4>
+                                Liên hệ chúng tôi
+                            </h4>
+                            <div class="contact_link_box">
+                                <a href="">
+                                    <i class="fa fa-map-marker" aria-hidden="true"></i>
+                                    <span>
+                                        450-451 Lê Văn Việt, Phường Tăng Nhơn Phú A, Tp. Thủ Đức (Quận 9 cũ), TP. Hồ Chí Minh
+                                    </span>
+                                </a>
+                                <a href="">
+                                    <i class="fa fa-phone" aria-hidden="true"></i>
+                                    <span>
+                                        +84 123456789
+                                    </span>
+                                </a>
+                                <a href="">
+                                    <i class="fa fa-envelope" aria-hidden="true"></i>
+                                    <span>
+                                        demo@gmail.com
+                                    </span>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4 footer-col">
+                        <div class="footer_detail">
+                            <a href="#" class="footer-logo">
+                                Fly Pizza
+                            </a>
+                            <p>
+                                Sự lựa chọn phù hợp cho những chiếc bụng đói và những bữa tiệc náo nhiệt
+                            </p>
+                            <div class="footer_social">
+                                <a href="">
+                                    <i class="fa fa-facebook" aria-hidden="true"></i>
+                                </a>
+                                <a href="">
+                                    <i class="fa fa-instagram" aria-hidden="true"></i>
+                                </a>
+                                <a href="">
+                                    <i class="fa fa-twitter" aria-hidden="true"></i>
+                                </a>
+                                <a href="">
+                                    <i class="fa fa-youtube-play" aria-hidden="true"></i>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4 footer-col">
+                        <h4>
+                            Giờ mở cửa
+                        </h4>
+                        <p>
+                            Mỗi ngày
+                        </p>
+                        <p>
+                            08.00 Am - 10.00 Pm
+                        </p>
+                    </div>
+                </div>
+                <div class="footer-info">
+                    <p>
+                        Bản quyền &copy; <span id="displayYear"></span> Fly Pizza. Đã đăng ký Bản quyền
+                    </p>
+                </div>
+            </div>
+        </footer>
+        <!-- footer section -->
+    </div>
     <!-- jQery -->
     <script src="~/Scripts/js/jquery-3.4.1.min.js"></script>
     <!-- popper js -->
