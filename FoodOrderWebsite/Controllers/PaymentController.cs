@@ -40,7 +40,15 @@ namespace FoodOrderWebsite.Controllers
                         orderDetail.Price = item._product.Price;
                         orderDetail.Quantity = item._quantity;
                         objFoodOrderEntities.OrderDetails.Add(orderDetail);
+
+                        var product = objFoodOrderEntities.Products.FirstOrDefault(p => p.ProductID == item._product.ProductID);
+                        if(product != null)
+                        {
+                            var newQuantity = product.Quantity - item._quantity;
+                            product.Quantity = newQuantity; 
+                        }
                     }
+
                     objFoodOrderEntities.SaveChanges();
                     cart.ClearCart();
                 }
