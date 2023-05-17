@@ -2121,6 +2121,10 @@
       <DependentUpon>dbModel.edmx</DependentUpon>
       <LastGenOutput>dbModel.cs</LastGenOutput>
     </Content>
+    <Content Include="Data\FoodOrder.mdf" />
+    <Content Include="Data\FoodOrder_log.ldf">
+      <DependentUpon>FoodOrder.mdf</DependentUpon>
+    </Content>
     <Content Include="favicon.ico" />
     <Content Include="fonts\fontawesome-webfont.svg" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
